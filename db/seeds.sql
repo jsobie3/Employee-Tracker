@@ -1,3 +1,4 @@
+-- Active: 1664495632835@@127.0.0.1@3306@employee_db
 INSERT INTO department (name)
 VALUES ("Networking"), ("Systems"), ("Technicians"), ("Interns");
 

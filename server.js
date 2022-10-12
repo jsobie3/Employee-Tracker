@@ -1,21 +1,19 @@
 const inquirer = require("inquirer");
-const mysql = require("mysql2");
-const db = require(".");
+// const mysql = require("mysql2");
 
-const PORT = procees.env.PORT || 3001;
 
-const connection = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"Chibulls0307",
-    database:"employee_db"
-})
+// const connection = mysql.createConnection({
+//     host:"localhost",
+//     user:"root",
+//     password:"Chibulls0307",
+//     database:"employee_db"
+// })
 
-connection.connect(function(err){
-    if (err) throw err;
+// connection.connect(function(err){
+//     if (err) throw err;
 
-    startPage();
-})
+//     startPage();
+// })
 
 
 console.log("hello")
@@ -72,15 +70,15 @@ function startPage (){
 
 };
 
-// function addEmployee() {
-//     inquirer.prompt ({
-//         type: "input",
-//         message: "What is the name of the name of the employee?",
-//         name:"employeeName"
-//     })
-//     .then(function(answer){
-//         createConnection.query
-//     })
-// }
+function addEmployee() {
+    inquirer.prompt ({
+        type: "input",
+        message: "What is the name of the name of the employee?",
+        name:"employeeName"
+    })
+    .then(function(answer){
+        createConnection.query
+    })
+}
 
 startPage();
