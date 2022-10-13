@@ -1,19 +1,19 @@
 const inquirer = require("inquirer");
-// const mysql = require("mysql2");
+const mysql = require("mysql2");
 
 
-// const connection = mysql.createConnection({
-//     host:"localhost",
-//     user:"root",
-//     password:"Chibulls0307",
-//     database:"employee_db"
-// })
+const connection = mysql.createConnection({
+    host:"localhost",
+    user:"root",
+    password:"Chibulls0307",
+    database:"employee_db"
+})
 
-// connection.connect(function(err){
-//     if (err) throw err;
+connection.connect(function(err){
+    if (err) throw err;
 
-//     startPage();
-// })
+    startPage();
+})
 
 
 console.log("hello")
@@ -29,11 +29,14 @@ function startPage (){
             "View All Roles",
             "add Role",
             "view all departments",
-            "Add Department"
+            "Add Department",
+            "Exit"
         ],
         message: "What would you like to do?",
         name: "startOptions"
     })
+.then(function(result){
+
 
     switch (result.option) {
         case  "View all employees":
@@ -67,18 +70,65 @@ function startPage (){
         default:
         exit();
     }
-
+})
 };
 
 function addEmployee() {
-    inquirer.prompt ({
+    inquirer.prompt (
+        {
         type: "input",
-        message: "What is the name of the name of the employee?",
-        name:"employeeName"
-    })
-    .then(function(answer){
-        createConnection.query
+        message: "What is the first name of the name of the employee?",
+        name:"firstName"
+        },
+        {
+        type: "input",
+        message: "What is the last name of the name of the employee?",
+        name:"lastName"
+        },
+        {
+        type: "input",
+        message: "What is the employee ID number?",
+        name:"roleID"
+        },
+        {
+        type: "input",
+        message: "What is their manager ID number?",
+        name:"managerID"            },
+
+    )
+    .then(function(answer)
+    {
+        createConnection.query("INSERT INTO EMPLOYEE (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)",
+        [answer.firstName,answer.lastName,answer.roleID,answer.managerID], function(err,res)
+            {
+                if (err) throw err;
+                startPage();
+        });
     })
 }
+
+
+function addRole() {
+    inquirer.prompt (
+    [
+        {
+        type: "input",
+        message: "What is the role?",
+        name:"roleName"
+        },
+        {
+        type: "input",
+        message: "What is the salary of the role?",
+        name:"salary"
+        },
+        {
+        type: "input",
+        message: "What is the the dapartment ID number?",
+        name:"deptID"            
+        }
+    ]
+
+
+    )}
 
 startPage();
